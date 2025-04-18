@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PriFile - Staff & Collaborator</title>
+    <link rel="stylesheet" href="/frontend/Homepage/HOME-STAFF_COLLAB/homeStaff.css">
+    <script src="/frontend/Homepage/HOME-STAFF_COLLAB/homeStaff.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="menu">&#9776;</div>
+        <div class="welcome">Welcome, USER!</div>
+    </header>
+
+    <div class="container">
+        <h1>PriFile</h1>
+        <p>Having secured file is better than never!</p>
+        
+        <!-- Insert Secret Key Form -->
+        <div class="secret-key-form">
+            <label for="secret-key">Insert Secret Key:</label>
+            <input type="text" id="secret-key" placeholder="Enter secret key">
+            <button id="submit-key" onclick="fetchFile()">Submit</button>
+        </div>
+
+        <!-- Available Files Table -->
+        <table id="file-table" style="display:none;">
+            <thead>
+                <tr>
+                    <th>File Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="file-list">
+                <!-- Files will be dynamically inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // JavaScript to handle the secret key submission
+        function fetchFile() {
+            const secretKey = document.getElementById("secret-key").value;
+
+            // Ensure secret key is not empty
+            if (!secretKey) {
+                alert("Please enter a secret key.");
+                return;
+            }
+
+            // Send the secret key to PHP via fetch API
+            fetch("fetchFiles.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: `secret-key=${secretKey}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Handle the response
+                const fileTable = document.getElementById("file-table");
+                const fileList = document.getElementById("file-list");
+
+                // Clear previous data
+                fileList.innerHTML = "";
+
+                if (data.success && data.files.length > 0) {
+                    // Show the file table
+                    fileTable.style.display = "block";
+
+                    // Populate the table with available files
+                    data.files.forEach(file => {
+                        const row = document.createElement("tr");
+                        row.innerHTML = `
+                            <td>${file.name}</td>
+                            <td><a href="${file.url}" target="_blank">Download</a></td>
+                        `;
+                        fileList.appendChild(row);
+                    });
+                } else {
+                    alert("No files found or invalid secret key.");
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching files:", error);
+            });
+        }
+    </script>
+</body>
+</html>

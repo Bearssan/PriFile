@@ -1,0 +1,110 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: black; /* Changed to black */
+    color: white; /* Text color adjusted for better contrast */
+}
+
+header {
+    background-color: #ffb300;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu {
+    font-size: 20px;
+    cursor: pointer;
+    color: white; /* Ensuring menu text is visible against dark background */
+}
+
+.welcome {
+    font-size: 16px;
+    color: white;
+}
+
+/* Container */
+.container {
+    width: 80%;
+    margin: 40px auto;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5em;
+    font-weight: bold;
+    font-style: italic;
+    color: white; /* Ensuring h1 text is visible */
+}
+
+p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+/* Secret Key Input */
+.secret-key-form {
+    margin-bottom: 20px;
+}
+
+#secret-key {
+    padding: 10px;
+    font-size: 16px;
+    width: 250px;
+    margin-right: 10px;
+    background-color: #333; /* Dark background for input field */
+    color: white; /* White text color in input field */
+    border: 1px solid #555; /* Lighter border for input field */
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #cd853f;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+button:hover {
+    background-color: #a65e2e;
+}
+
+/* Table */
+table {
+    width: 80%;
+    margin: auto;
+    border-collapse: collapse;
+    background-color: #333; /* Dark background for the table */
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #555; /* Light border for table */
+    text-align: center;
+    color: white; /* White text for table */
+}
+
+th {
+    background-color: #ffb300;
+}
+
+button.view-btn,
+button.download-btn {
+    background-color: #a65e2e;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white; /* Ensuring button text is visible */
+}
+
+button.view-btn:hover,
+button.download-btn:hover {
+    background-color: #7a472b;
+}

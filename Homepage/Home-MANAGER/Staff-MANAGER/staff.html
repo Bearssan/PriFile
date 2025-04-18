@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff List</title>
+    <link rel="stylesheet" href="staff.css">
+    <script src="staff.js" defer></script>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="navbar">
+        <div class="menu" onclick="toggleNav()">
+            <span class="menu-bar"></span>
+            <span class="menu-bar"></span>
+            <span class="menu-bar"></span>
+        </div>
+        <span class="brand">PriFile</span>
+        <span class="user-text">Welcome, USER!</span>
+    </header>
+
+    <!-- Side Navigation -->
+    <div id="side-nav" class="side-nav">
+        <div class="close-btn" onclick="toggleNav()">&#8594;</div>
+        <h2>PriFile</h2>
+        <ul>
+            <li><a href="/frontend/Homepage/Home-MANAGER/FileHistory-MANAGER/filehistory.html">File History</a></li>
+            <li><a href="/frontend/Homepage/Home-MANAGER/Staff-MANAGER/staff.html">Staff</a></li>
+            <li><a href="/frontend/Homepage/Home-MANAGER/Collaborator/collaborator.html">Collaborator</a></li>
+            <li><a href="/frontend/Homepage/about/about.html">About</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>STAFF LIST</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Staff</th>
+                    <th>Role</th>
+                    <th>Check</th>
+                </tr>
+            </thead>
+            <tbody id="staff-table">
+                <!-- Dynamic Data from Database -->
+            </tbody>
+        </table>
+
+        <div class="button-group">
+            <button id="add-btn">ADD</button>
+            <button id="delete-btn">DELETE</button>
+            <button id="edit-btn">EDIT</button>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Popup -->
+    <div id="delete-popup" class="popup">
+        <div class="popup-content">
+            <p>Proceed <span class="delete-text">DELETING</span> staff information?</p>
+            <button id="confirm-delete">YES</button>
+            <button id="cancel-delete">NO</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            fetchStaffList(); // Load staff data
+
+            document.getElementById("add-btn").addEventListener("click", () => {
+                window.location.href = "/frontend/Homepage/Home-MANAGER/NewStaff-MANAGER/newstaff.html"; // Redirect to Add Staff Page
+            });
+
+            document.getElementById("edit-btn").addEventListener("click", () => {
+                window.location.href = "/frontend/Homepage/Home-MANAGER/EditStaff-MANAGER/editstaff.html"; // Redirect to Edit Staff Page
+            });
+
+            document.getElementById("delete-btn").addEventListener("click", () => {
+                document.getElementById("delete-popup").style.display = "block"; // Show popup
+            });
+
+            document.getElementById("cancel-delete").addEventListener("click", () => {
+                document.getElementById("delete-popup").style.display = "none"; // Hide popup
+            });
+
+            document.getElementById("confirm-delete").addEventListener("click", deleteSelectedStaff);
+        });
+
+        function fetchStaffList() {
+            fetch("http://localhost/api/getStaff.php")
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.getElementById("staff-table");
+                    tableBody.innerHTML = ""; // Clear table before inserting data
+
+                    data.forEach((staff, index) => {
+                        const row = document.createElement("tr");
+                        row.innerHTML = `
+                            <td>${index + 1}</td>
+                            <td>${staff.name}</td>
+                            <td>${staff.role}</td>
+                            <td><input type="checkbox" class="staff-checkbox" data-id="${staff.id}"></td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error("Error fetching staff list:", error));
+        }
+
+        function deleteSelectedStaff() {
+            const selected = document.querySelectorAll(".staff-checkbox:checked");
+            const idsToDelete = Array.from(selected).map(cb => cb.dataset.id);
+
+            if (idsToDelete.length === 0) {
+                alert("Please select a staff to delete.");
+                return;
+            }
+
+            fetch("http://localhost/api/deleteStaff.php", {
+                method: "POST",
+                body: JSON.stringify({ ids: idsToDelete }),
+                headers: { "Content-Type": "application/json" }
+            })
+            .then(response => response.text())
+            .then(result => {
+                alert("Staff deleted successfully!");
+                document.getElementById("delete-popup").style.display = "none"; // Hide popup
+                fetchStaffList(); // Refresh table
+            })
+            .catch(error => console.error("Error deleting staff:", error));
+        }
+
+        // Toggle navigation panel
+        function toggleNav() {
+            const sideNav = document.getElementById('side-nav');
+            const menu = document.querySelector('.menu');
+
+            if (sideNav.style.left === '0px') {
+                sideNav.style.left = '-250px';
+                menu.classList.remove('opened');
+            } else {
+                sideNav.style.left = '0';
+                menu.classList.add('opened');
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Staff - PriFile</title>
+    <link rel="stylesheet" href="newstaff.css">
+    <script src="newstaff.js" defer></script>
+</head>
+<body>
+
+    <header>
+        <div class="menu">&#9776; <span class="logo">PriFile</span></div>
+        <div class="welcome">Welcome, USER!</div>
+    </header>
+
+    <div class="container">
+        <h1>NEW STAFF</h1>
+        
+        <form id="staff-form">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="job">Job Description</label>
+            <input type="text" id="job" name="job" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+<!-- Side Navigation -->
+<div id="side-nav" class="side-nav">
+    <div class="close-btn" onclick="toggleNav()">&#8594;</div>
+    <h2>PriFile</h2>
+    <ul>
+        <li><a href="/frontend/Homepage/Home-MANAGER/FileHistory-MANAGER/filehistory.html">File History</a></li>
+        <li><a href="/frontend/Homepage/Home-MANAGER/Staff-MANAGER/staff.html">Staff</a></li>
+        <li><a href="/frontend/Homepage/Home-MANAGER/Collaborator/collaborator.html">Collaborator</a></li>
+        <li><a href="/frontend/Homepage/about/about.html">About</a></li>
+    </ul>
+</div>
+            <label>Permission</label>
+            <div class="permission">
+                <div class="toggle-group">
+                    <span>View File</span>
+                    <button type="button" class="toggle yes" data-type="view">YES</button>
+                    <button type="button" class="toggle no" data-type="view">NO</button>
+                </div>
+                <div class="toggle-group">
+                    <span>Download File</span>
+                    <button type="button" class="toggle yes" data-type="download">YES</button>
+                    <button type="button" class="toggle no" data-type="download">NO</button>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">SUBMIT</button>
+        </form>
+    </div>
+
+</body>
+</html>

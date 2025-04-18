@@ -1,0 +1,82 @@
+body {
+    background: linear-gradient(to right, #FFD54F, #FF8A65);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #FFA000;
+    padding: 15px 20px;
+    color: white;
+    font-weight: bold;
+}
+
+.menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.brand {
+    font-size: 24px;
+}
+
+.user-text {
+    font-size: 16px;
+}
+
+.upload-container {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #FFCC80;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.upload-title {
+    font-weight: bold;
+    font-style: italic;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+input[type="text"], input[type="file"], textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+textarea {
+    min-height: 100px;
+    resize: none;
+}
+
+.upload-btn {
+    background: #BF360C;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.upload-btn:hover {
+    background: #E64A19;
+}

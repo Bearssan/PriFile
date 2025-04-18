@@ -1,0 +1,64 @@
+body {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #FFD54F, #FF8A65);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.logo-container {
+    margin-bottom: 30px;
+}
+
+.logo {
+    font-size: 48px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Optional shadow for better visibility */
+}
+
+.login-card {
+    background: #FFCC80;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 350px; /* Adjusted width to match the design */
+}
+
+.login-card h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #FF7043;
+    margin-bottom: 20px;
+}
+
+.login-card .btn {
+    margin: 10px 0;
+    background: #FF7043;
+    color: white;
+    font-weight: bold;
+    border: none;
+    text-align: center;
+    padding: 15px;
+    border-radius: 8px;
+    text-transform: uppercase;
+}
+
+.login-card .btn:hover {
+    background: #F4511E;
+}
+
+.login-card a {
+    color: #1565C0;
+    text-decoration: none;
+}

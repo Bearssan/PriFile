@@ -1,0 +1,204 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background: linear-gradient(to right, #ffcc33, #ff9966);
+    color: black;
+}
+
+/* Header */
+header {
+    background: #ffb300;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.menu {
+    font-size: 25px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.menu-bar {
+    width: 30px;
+    height: 5px;
+    background-color: white;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+/* Menu Transformation for Hamburger Icon */
+.menu.opened .menu-bar:nth-child(1) {
+    transform: rotate(45deg);
+    position: relative;
+    top: 8px;
+}
+
+.menu.opened .menu-bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu.opened .menu-bar:nth-child(3) {
+    transform: rotate(-45deg);
+    position: relative;
+    top: -8px;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.welcome {
+    font-size: 16px;
+}
+
+/* Side Navigation */
+.side-nav {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: #ffb300;
+    padding: 20px;
+    transition: left 0.3s ease;
+    z-index: 1;
+}
+
+.side-nav h2 {
+    color: white;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.side-nav ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.side-nav ul li {
+    margin-bottom: 15px;
+}
+
+.side-nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    display: block;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Main Content */
+.container {
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    font-style: italic;
+    font-weight: bold;
+}
+
+/* Form Styles */
+form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+input {
+    width: 80%;
+    padding: 10px;
+    font-size: 1em;
+    margin: 10px 0;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.permission {
+    margin: 20px 0;
+}
+
+.toggle-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.toggle-group span {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.toggle {
+    border: none;
+    padding: 10px 15px;
+    font-size: 1em;
+    cursor: pointer;
+    margin: 0 5px;
+    border-radius: 5px;
+}
+
+.yes {
+    background-color: green;
+    color: white;
+}
+
+.no {
+    background-color: red;
+    color: white;
+}
+
+.submit-btn {
+    background-color: #cd853f;
+    color: black;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+/* Mobile and Smaller Screens */
+@media screen and (max-width: 768px) {
+    .menu {
+        font-size: 25px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .side-nav {
+        left: -250px;
+    }
+
+    .side-nav.open {
+        left: 0;
+    }
+}

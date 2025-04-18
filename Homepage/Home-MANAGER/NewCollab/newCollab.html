@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Account for Collaborator</title>
+    <link rel="stylesheet" href="newCollab.css">
+    <script src="newCollab.js" defer></script>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="menu" onclick="toggleNav()">
+            <span class="menu-bar"></span>
+            <span class="menu-bar"></span>
+            <span class="menu-bar"></span>
+        </div>
+        <div class="logo">PriFile</div>
+    </header>
+
+    <!-- Side Navigation -->
+    <div id="side-nav" class="side-nav">
+        <div class="close-btn" onclick="toggleNav()">&#8594;</div>
+        <h2>PriFile</h2>
+        <ul>
+            <li><a href="/frontend/Homepage/Home-MANAGER/FileHistory-MANAGER/filehistory.html">File History</a></li>
+            <li><a href="/frontend/Homepage/Home-MANAGER/Staff-MANAGER/staff.html">Staff</a></li>
+            <li><a href="/frontend/Homepage/Home-MANAGER/Collaborator/collaborator.html">Collaborator</a></li>
+            
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>New Account for Collaborator</h1>
+
+        <!-- Form to create a new collaborator account -->
+        <form action="create_collaborator.php" method="POST">
+            <div class="input-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="input-group">
+                <label for="job_description">Job Description</label>
+                <input type="text" id="job_description" name="job_description" required>
+            </div>
+
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <button type="submit" class="submit-btn">SUBMIT</button>
+        </form>
+    </div>
+
+</body>
+</html>

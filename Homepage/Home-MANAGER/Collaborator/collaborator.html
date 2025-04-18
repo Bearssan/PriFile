@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collaborator List</title>
+    <link rel="stylesheet" href="collaborator.css">
+    <script src="collaborator.js" defer></script>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="navbar">
+        <div class="menu" onclick="toggleNav()">
+            <span class="menu-bar"></span>
+            <span class="menu-bar"></span>
+            <span class="menu-bar"></span>
+        </div>
+        <span class="brand">PriFile</span>
+        <span class="user-text">Welcome, USER!</span>
+    </header>
+
+    <!-- Side Navigation -->
+    <div id="side-nav" class="side-nav">
+        <div class="close-btn" onclick="toggleNav()">&#8594;</div>
+        <h2>PriFile</h2>
+        <ul>
+            <li><a href="/frontend/Homepage/Home-MANAGER/FileHistory-MANAGER/filehistory.html">File History</a></li>
+            <li><a href="/frontend/Homepage/Home-MANAGER/Staff-MANAGER/staff.html">Staff</a></li>
+            <li><a href="/frontend/Homepage/Home-MANAGER/Collaborator/collaborator.html">Collaborator</a></li>
+            
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>COLLABORATOR LIST</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Collaborator</th>
+                    <th>Role</th>
+                    <th>Check</th>
+                </tr>
+            </thead>
+            <tbody id="collaborator-table">
+                <!-- Dynamic Data from Database -->
+            </tbody>
+        </table>
+
+        <div class="button-group">
+            <button id="add-btn">ADD</button>
+            <button id="delete-btn">DELETE</button>
+            <button id="upload-btn">UPLOAD</button>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Popup -->
+    <div id="delete-popup" class="popup">
+        <div class="popup-content">
+            <p>Proceed <span class="delete-text">DELETING</span> collaborator information?</p>
+            <button id="confirm-delete">YES</button>
+            <button id="cancel-delete">NO</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            fetchCollaboratorList(); // Load collaborator data
+
+            // Redirect to Add Collaborator Page
+            document.getElementById("add-btn").addEventListener("click", () => {
+                window.location.href = "/Homepage/Home-MANAGER/NewCollaborator-MANAGER/newcollaborator.html";
+            });
+
+            // Redirect to Upload Collaborator Page
+            document.getElementById("upload-btn").addEventListener("click", () => {
+                window.location.href = "/Homepage/Home-MANAGER/UploadCollaborator/uploadcollaborator.html";
+            });
+
+            // Show delete confirmation popup
+            document.getElementById("delete-btn").addEventListener("click", () => {
+                document.getElementById("delete-popup").style.display = "block";
+            });
+
+            // Hide delete confirmation popup
+            document.getElementById("cancel-delete").addEventListener("click", () => {
+                document.getElementById("delete-popup").style.display = "none";
+            });
+
+            // Confirm deletion of selected collaborators
+            document.getElementById("confirm-delete").addEventListener("click", deleteSelectedCollaborators);
+        });
+
+        // Fetch collaborator list and display in table
+        function fetchCollaboratorList() {
+            fetch("http://localhost/api/getCollaborators.php")
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.getElementById("collaborator-table");
+                    tableBody.innerHTML = ""; // Clear table before inserting new data
+
+                    data.forEach((collaborator, index) => {
+                        const row = document.createElement("tr");
+                        row.innerHTML = `
+                            <td>${index + 1}</td>
+                            <td>${collaborator.name}</td>
+                            <td>${collaborator.role}</td>
+                            <td><input type="checkbox" class="collaborator-checkbox" data-id="${collaborator.id}"></td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error("Error fetching collaborator list:", error));
+        }
+
+        // Delete selected collaborators
+        function deleteSelectedCollaborators() {
+            const selected = document.querySelectorAll(".collaborator-checkbox:checked");
+            const idsToDelete = Array.from(selected).map(cb => cb.dataset.id);
+
+            if (idsToDelete.length === 0) {
+                alert("Please select a collaborator to delete.");
+                return;
+            }
+
+            fetch("http://localhost/api/deleteCollaborator.php", {
+                method: "POST",
+                body: JSON.stringify({ ids: idsToDelete }),
+                headers: { "Content-Type": "application/json" }
+            })
+            .then(response => response.text())
+            .then(result => {
+                alert("Collaborator deleted successfully!");
+                document.getElementById("delete-popup").style.display = "none"; // Hide popup
+                fetchCollaboratorList(); // Refresh table
+            })
+            .catch(error => console.error("Error deleting collaborator:", error));
+        }
+
+        // Function to toggle the side navigation
+        function toggleNav() {
+            const sideNav = document.getElementById("side-nav");
+            const menu = document.querySelector(".menu");
+
+            if (sideNav.style.left === "0px") {
+                sideNav.style.left = "-250px";
+                menu.classList.remove("opened");
+            } else {
+                sideNav.style.left = "0";
+                menu.classList.add("opened");
+            }
+        }
+    </script>
+
+</body>
+</html>

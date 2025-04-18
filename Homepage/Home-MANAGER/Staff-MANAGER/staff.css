@@ -1,0 +1,176 @@
+/* Header Styles */
+.navbar {
+    background-color: #ffb000; /* Yellow background */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+}
+
+.menu {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.menu-bar {
+    width: 30px;
+    height: 4px;
+    background-color: black;
+}
+
+.menu.opened .menu-bar:nth-child(1) {
+    transform: rotate(45deg);
+    position: relative;
+    top: 6px;
+}
+
+.menu.opened .menu-bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu.opened .menu-bar:nth-child(3) {
+    transform: rotate(-45deg);
+    position: relative;
+    top: -6px;
+}
+
+.brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+.user-text {
+    font-size: 16px;
+    color: black;
+}
+
+/* Side Navigation */
+.side-nav {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    height: 100%;
+    width: 250px;
+    background-color: #FFA500;
+    padding: 20px;
+    transition: left 0.3s ease;
+}
+
+.side-nav h2 {
+    color: white;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.side-nav ul {
+    list-style: none;
+}
+
+.side-nav ul li {
+    margin-bottom: 15px;
+}
+
+.side-nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    display: block;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Body Styles */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #ffcc4d, #ff7f50);
+    text-align: center;
+}
+
+.container {
+    margin: 30px;
+}
+
+h1 {
+    font-style: italic;
+    font-weight: bold;
+}
+
+table {
+    width: 80%;
+    margin: auto;
+    border-collapse: collapse;
+    background: white;
+}
+
+th, td {
+    border: 2px solid black;
+    padding: 10px;
+}
+
+.button-group {
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 5px;
+}
+
+#add-btn {
+    background: #a55eea;
+    color: white;
+}
+
+#delete-btn {
+    background: #eb3b5a;
+    color: white;
+}
+
+#edit-btn {
+    background: #f7b731;
+    color: white;
+}
+
+/* Popup Styles */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #b05c20;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+}
+
+.popup-content {
+    font-size: 20px;
+}
+
+.delete-text {
+    color: red;
+    font-weight: bold;
+}
+
+.popup button {
+    background: #fffacd;
+    color: black;
+    margin: 10px;
+}

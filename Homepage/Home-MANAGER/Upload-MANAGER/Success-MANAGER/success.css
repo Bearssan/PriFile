@@ -1,0 +1,104 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(to right, #FFD54F, #FF8A65);
+  }
+  
+  header {
+    width: 100%;
+    background: #FFA500;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+  }
+  
+  .menu {
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .welcome {
+    font-size: 16px;
+  }
+  
+  .container {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .title {
+    font-size: 32px;
+    font-weight: bold;
+    font-style: italic;
+  }
+  
+  .key-container {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  label {
+    font-size: 16px;
+    font-weight: bold;
+    border: 2px solid black;
+    padding: 5px 10px;
+    border-radius: 20px;
+  }
+  
+  input {
+    width: 50%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid black;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  #copy-btn {
+    background: #0099FF;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  #copy-btn:hover {
+    background: #0077CC;
+  }
+  
+  #home-btn {
+    margin-top: 30px;
+    padding: 15px 30px;
+    font-size: 18px;
+    background: #CD853F;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+  
+  #home-btn:hover {
+    background: #A0522D;
+  }
+  

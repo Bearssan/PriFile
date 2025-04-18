@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Collaborator</title>
+    <link rel="stylesheet" href="addcolab.css">
+    <script src="addcolab.js" defer></script>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="menu" onclick="toggleNav()">
+            <span class="menu-bar"></span>
+            <span class="menu-bar"></span>
+            <span class="menu-bar"></span>
+        </div>
+        <div class="logo">PriFile</div>
+        <div class="welcome">Welcome, USER!</div>
+    </header>
+
+    <!-- Side Navigation -->
+    <div id="side-nav" class="side-nav">
+        <div class="close-btn" onclick="toggleNav()">&#8594;</div>
+        <h2>PriFile</h2>
+        <ul>
+            <li><a href="/frontend/Homepage/Home-MANAGER/FileHistory-MANAGER/filehistory.html">File History</a></li>
+            <li><a href="/frontend/Homepage/Home-MANAGER/Staff-MANAGER/staff.html">Staff</a></li>
+            <li><a href="/frontend/Homepage/Home-MANAGER/Collaborator/collaborator.html">Collaborator</a></li>
+            
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>NEW COLLABORATOR</h1>
+
+        <!-- Form to Add New Collaborator -->
+        <form action="/backend-laravel/add_collab.php" method="POST">
+            <div>
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div>
+                <label for="job-description">Job Description</label>
+                <input type="text" id="job-description" name="job-description" required>
+            </div>
+
+            <div>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <div class="permission">
+                <label for="permission">Permission</label>
+                <div class="toggle-group">
+                    <span>View File</span>
+                    <button type="button" class="toggle yes" onclick="togglePermission('view')">YES</button>
+                    <button type="button" class="toggle no" onclick="togglePermission('view')">NO</button>
+                </div>
+                <div class="toggle-group">
+                    <span>Download File</span>
+                    <button type="button" class="toggle yes" onclick="togglePermission('download')">YES</button>
+                    <button type="button" class="toggle no" onclick="togglePermission('download')">NO</button>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">SUBMIT</button>
+        </form>
+    </div>
+
+</body>
+</html>
